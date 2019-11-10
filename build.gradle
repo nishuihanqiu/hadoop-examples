@@ -1,0 +1,35 @@
+plugins {
+    id 'java'
+    id 'maven'
+    id 'application'
+}
+
+group 'com.lls'
+version '1.0-SNAPSHOT'
+
+repositories {
+    maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
+    jcenter()
+    mavenCentral()
+}
+
+dependencies {
+    // This dependency is used by the application.
+    compile 'log4j:log4j:1.2.17'
+    compile 'org.slf4j:slf4j-api:1.7.25'
+    compile 'org.slf4j:slf4j-log4j12:1.7.25'
+
+    compile 'org.apache.hadoop:hadoop-client:3.2.1'
+    compile 'org.apache.hadoop:hadoop-common:3.2.1'
+    compile 'org.apache.hadoop:hadoop-hdfs:3.2.1'
+
+    compile 'com.google.guava:guava:28.0-jre'
+
+    // Use JUnit test framework
+    testImplementation 'junit:junit:4.12'
+}
+
+application {
+    // Define the main class for the application
+    mainClassName = 'com.lls.word.Application'
+}
