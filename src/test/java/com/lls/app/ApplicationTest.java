@@ -1,4 +1,4 @@
-package com.lls.word;
+package com.lls.app;
 
 import org.junit.Test;
 

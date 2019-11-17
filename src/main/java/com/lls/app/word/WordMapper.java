@@ -1,4 +1,4 @@
-package com.lls.word;
+package com.lls.app.word;
 
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;

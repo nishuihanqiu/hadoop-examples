@@ -1,5 +1,6 @@
-package com.lls.word;
+package com.lls.app.word;
 
+import com.lls.app.Application;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IntWritable;
@@ -10,11 +11,14 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
 import java.io.IOException;
 
-public class Application {
+/************************************
+ * Word
+ * @author liliangshan
+ * @date 2019/11/15
+ ************************************/
+public class Word {
 
-    // hadoop jar word-count-1.0-SNAPSHOT.jar com.lls.word.Application /wordcount/input /wordcount/output
-
-    public static void main(String[] args) throws IOException, ClassNotFoundException, InterruptedException {
+    public void execute(String[] args) throws IOException, ClassNotFoundException, InterruptedException {
         Configuration conf = new Configuration();
         Job job = Job.getInstance(conf, "word_count");
 
@@ -41,4 +45,5 @@ public class Application {
         System.exit(b ? 0 : 1);
 
     }
+
 }

@@ -24,9 +24,13 @@ dependencies {
     compile 'org.apache.hadoop:hadoop-hdfs:3.2.1'
 
     compile 'com.google.guava:guava:28.0-jre'
+    compile 'org.apache.hbase:hbase-client:2.2.2'
 
     // Use JUnit test framework
     testImplementation 'junit:junit:4.12'
+//    testImplementation 'org.apache.mrunit:mrunit:1.0.0'
+
+
 }
 
 application {
