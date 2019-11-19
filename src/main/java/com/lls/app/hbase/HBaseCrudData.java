@@ -11,13 +11,17 @@ import org.apache.hadoop.hbase.util.Bytes;
  * @author liliangshan
  * @date 2019/11/16
  ************************************/
-public class HBasePutData {
+public class HBaseCrudData {
 
-    public void execute(String[] args) throws Exception {
+    private Table getTable(String zkUrl, String tableName) throws Exception {
         Configuration conf = HBaseConfiguration.create();
-        conf.set("hbase.zookeeper.quorum", "localhost:2181");
+        conf.set("hbase.zookeeper.quorum", zkUrl);
         Connection connection = ConnectionFactory.createConnection(conf);
-        Table table = connection.getTable(TableName.valueOf("test_table_002"));
+        return connection.getTable(TableName.valueOf(tableName));
+    }
+
+    public void put(String zkUrl, String tableName) throws Exception {
+        Table table = this.getTable(zkUrl, tableName);
 
         Put put = new Put(Bytes.toBytes("row1"));  // row_key
         // 添加列数据，指定列簇、列名与列值
@@ -46,9 +50,18 @@ public class HBasePutData {
 
     }
 
+    public void get(String zkUrl, String tableName) throws Exception {
+        Table table = this.getTable(zkUrl, tableName);
+        Get get = new Get(Bytes.toBytes("row1"));
+        get.addColumn(Bytes.toBytes("f1"), Bytes.toBytes("name"));
+        Result result = table.get(get);
+        byte[] values = result.getValue(Bytes.toBytes("f1"), Bytes.toBytes("name"));
+        System.out.println("Value: " + Bytes.toString(values));
+    }
+
     public static void main(String[] args) throws Exception {
-        HBasePutData putData = new HBasePutData();
-        putData.execute(args);
+        HBaseCrudData crud = new HBaseCrudData();
+        crud.get("localhost:2181", "test_table_002");
     }
 
 }
