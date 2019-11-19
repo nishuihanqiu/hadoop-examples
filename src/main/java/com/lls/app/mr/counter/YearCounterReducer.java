@@ -1,4 +1,4 @@
-package com.lls.app.word;
+package com.lls.app.mr.counter;
 
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;
@@ -7,19 +7,19 @@ import org.apache.hadoop.mapreduce.Reducer;
 import java.io.IOException;
 
 /************************************
- * WordReducer
+ * YearCounterReducer
  * @author liliangshan
- * @date 2019/11/9
+ * @date 2019/11/19
  ************************************/
-public class WordReducer extends Reducer<Text, IntWritable, Text, IntWritable> {
+public class YearCounterReducer extends Reducer<Text, IntWritable, Text, IntWritable> {
 
     @Override
     protected void reduce(Text key, Iterable<IntWritable> values, Context context) throws IOException, InterruptedException {
-        int count = 0;
-        for (IntWritable value : values) {
-            count += value.get();
+        int sum = 0;
+        for (IntWritable val : values) {
+            sum += val.get();
         }
-        context.write(key, new IntWritable(count));
+        context.write(key, new IntWritable(sum));
     }
 
 }

@@ -1,7 +1,8 @@
-package com.lls.app.word;
+package com.lls.app.mr.word;
 
 import com.lls.app.Application;
 import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;
@@ -23,7 +24,7 @@ public class Word {
         Job job = Job.getInstance(conf, "word_count");
 
         // 指定本次job运行的主类
-        job.setJarByClass(Application.class);
+        job.setJarByClass(Word.class);
 
         // 指定本次job的具体mapper reducer实现类
         job.setMapperClass(WordMapper.class);
@@ -38,12 +39,21 @@ public class Word {
 
         // 指定本次job待处理数据的目录 和程序执行完输出结果存放的目录
         FileInputFormat.setInputPaths(job, new Path(args[0]));
+        Path outPath = new Path(args[1]);
         FileOutputFormat.setOutputPath(job, new Path(args[1]));
-
+        FileSystem fs = FileSystem.get(conf);
+        if(fs.exists(outPath)) {
+            fs.delete(outPath, true);
+        }
         // 提交本次job
         boolean b = job.waitForCompletion(true);
         System.exit(b ? 0 : 1);
 
+    }
+
+    public static void main(String[] args) throws InterruptedException, IOException, ClassNotFoundException {
+        Word word = new Word();
+        word.execute(args);
     }
 
 }
