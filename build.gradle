@@ -1,7 +1,10 @@
+import com.commercehub.gradle.plugin.avro.GenerateAvroJavaTask
+
 plugins {
     id 'java'
     id 'maven'
     id 'application'
+    id "com.commercehub.gradle.plugin.avro" version "0.9.1"
 }
 
 group 'com.lls'
@@ -25,6 +28,7 @@ dependencies {
 
     compile 'com.google.guava:guava:28.0-jre'
     compile 'org.apache.hbase:hbase-client:2.2.2'
+    compile 'org.apache.avro:avro:1.9.1'
 
     // Use JUnit test framework
     testImplementation 'junit:junit:4.12'
@@ -36,4 +40,8 @@ dependencies {
 application {
     // Define the main class for the application
     mainClassName = 'com.lls.word.Application'
+}
+
+avro {
+    outputCharacterEncoding = "UTF-8"
 }

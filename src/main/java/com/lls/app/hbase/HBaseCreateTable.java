@@ -17,7 +17,9 @@ public class HBaseCreateTable {
         // 创建HBase配置对象
         Configuration configuration = HBaseConfiguration.create();
         // 指定zookeeper集群地址
-        configuration.set("hbase.zookeeper.quorum", "localhost:2181");
+        configuration.set("hbase.zookeeper.quorum", "localhost");
+        configuration.set("hbase.zookeeper.property.clientPort", "2181");
+        System.out.println("开始连接hbase");
         // 创建连接对象connection
         Connection connection = ConnectionFactory.createConnection(configuration);
 

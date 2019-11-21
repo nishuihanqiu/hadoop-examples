@@ -13,9 +13,10 @@ import org.apache.hadoop.hbase.util.Bytes;
  ************************************/
 public class HBaseCrudData {
 
-    private Table getTable(String zkUrl, String tableName) throws Exception {
+    private Table getTable(String host, String tableName) throws Exception {
         Configuration conf = HBaseConfiguration.create();
-        conf.set("hbase.zookeeper.quorum", zkUrl);
+        conf.set("hbase.zookeeper.quorum", host);
+        conf.set("hbase.zookeeper.property.clientPort", "12181");
         Connection connection = ConnectionFactory.createConnection(conf);
         return connection.getTable(TableName.valueOf(tableName));
     }
@@ -61,7 +62,7 @@ public class HBaseCrudData {
 
     public static void main(String[] args) throws Exception {
         HBaseCrudData crud = new HBaseCrudData();
-        crud.get("localhost:2181", "test_table_002");
+        crud.put("localhost", "test_table_002");
     }
 
 }
