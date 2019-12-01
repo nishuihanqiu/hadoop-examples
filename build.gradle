@@ -1,9 +1,8 @@
-import com.commercehub.gradle.plugin.avro.GenerateAvroJavaTask
-
 plugins {
     id 'java'
     id 'maven'
     id 'application'
+    id 'scala'
     id "com.commercehub.gradle.plugin.avro" version "0.9.1"
 }
 
@@ -14,6 +13,7 @@ repositories {
     maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
     jcenter()
     mavenCentral()
+    mavenLocal()
 }
 
 dependencies {
@@ -28,7 +28,16 @@ dependencies {
 
     compile 'com.google.guava:guava:28.0-jre'
     compile 'org.apache.hbase:hbase-client:2.2.2'
-    compile 'org.apache.avro:avro:1.9.1'
+    compile 'org.apache.avro:avro:1.8.2'
+    compile 'org.apache.avro:avro-mapred:1.8.2'
+    compile 'org.apache.parquet:parquet-avro:1.10.1'
+    compile 'org.apache.flink:flink-core:1.9.1'
+    compile 'org.apache.flink:flink-clients_2.12:1.9.1'
+    compileOnly 'org.apache.flink:flink-streaming-java_2.12:1.9.1'
+    compile 'org.apache.flink:flink-java:1.9.1'
+
+    compile 'org.scala-lang:scala-library:2.11.12'
+    compile 'org.apache.spark:spark-core_2.11:2.4.4'
 
     // Use JUnit test framework
     testImplementation 'junit:junit:4.12'
@@ -39,9 +48,10 @@ dependencies {
 
 application {
     // Define the main class for the application
-    mainClassName = 'com.lls.word.Application'
+    mainClassName = 'com.lls.app.Application'
 }
 
+// 注意此版本的spark对应的avro版本为1.8.2,高了会引起冲突
 avro {
     outputCharacterEncoding = "UTF-8"
 }
