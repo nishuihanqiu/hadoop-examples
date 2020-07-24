@@ -17,6 +17,8 @@ import java.io.IOException;
  * @date 2019/11/19
  ************************************/
 public class YearCounter {
+//    hdfs dfs -put ./src/main/java/com/lls/app/mr/counter/year.csv /input/year
+//    hadoop jar build/libs/hadoop-world-1.0-SNAPSHOT.jar com.lls.app.mr.counter.YearCounter  /input/year /output
 
     public void execute(String[] args) throws IOException, ClassNotFoundException, InterruptedException {
         // 设置hdfs配置信息

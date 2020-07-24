@@ -2,7 +2,7 @@ plugins {
     id 'java'
     id 'maven'
     id 'application'
-    id 'scala'
+//    id 'scala'
     id "com.commercehub.gradle.plugin.avro" version "0.9.1"
 }
 
@@ -28,7 +28,7 @@ dependencies {
 
     compile 'com.google.guava:guava:28.0-jre'
     compile 'org.apache.hbase:hbase-client:2.2.2'
-    compile 'org.apache.avro:avro:1.8.2'
+    compile "org.apache.avro:avro:1.9.1"
     compile 'org.apache.avro:avro-mapred:1.8.2'
     compile 'org.apache.parquet:parquet-avro:1.10.1'
     compile 'org.apache.flink:flink-core:1.9.1'
@@ -37,7 +37,7 @@ dependencies {
     compile 'org.apache.flink:flink-java:1.9.1'
 
     compile 'org.scala-lang:scala-library:2.11.12'
-    compile 'org.apache.spark:spark-core_2.11:2.4.4'
+//    compile 'org.apache.spark:spark-core_2.11:2.4.4'
 
     // Use JUnit test framework
     testImplementation 'junit:junit:4.12'
