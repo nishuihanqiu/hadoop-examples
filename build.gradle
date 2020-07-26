@@ -2,7 +2,7 @@ plugins {
     id 'java'
     id 'maven'
     id 'application'
-//    id 'scala'
+    id 'scala'
     id "com.commercehub.gradle.plugin.avro" version "0.9.1"
 }
 
@@ -31,19 +31,18 @@ dependencies {
     compile "org.apache.avro:avro:1.9.1"
     compile 'org.apache.avro:avro-mapred:1.8.2'
     compile 'org.apache.parquet:parquet-avro:1.10.1'
-    compile 'org.apache.flink:flink-core:1.9.1'
-    compile 'org.apache.flink:flink-clients_2.12:1.9.1'
-    compileOnly 'org.apache.flink:flink-streaming-java_2.12:1.9.1'
-    compile 'org.apache.flink:flink-java:1.9.1'
-
-    compile 'org.scala-lang:scala-library:2.11.12'
-//    compile 'org.apache.spark:spark-core_2.11:2.4.4'
+    compile('org.apache.flink:flink-core:1.9.1')
+    compile('org.apache.flink:flink-clients_2.11:1.9.1')
+    compileOnly('org.apache.flink:flink-streaming-java_2.11:1.9.1')
+    compile('org.apache.flink:flink-java:1.9.1')
+    compile('com.fasterxml.jackson.core:jackson-databind:2.6.7') {
+        force = true
+    }
+    compile 'org.scala-lang:scala-library:2.11.11'
+    compile("org.apache.spark:spark-core_2.11:2.4.4")
 
     // Use JUnit test framework
     testImplementation 'junit:junit:4.12'
-//    testImplementation 'org.apache.mrunit:mrunit:1.0.0'
-
-
 }
 
 application {

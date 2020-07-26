@@ -1,6 +1,5 @@
 package com.lls.app.mr.word;
 
-import com.lls.app.Application;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
