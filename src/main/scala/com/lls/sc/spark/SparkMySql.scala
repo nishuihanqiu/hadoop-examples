@@ -27,7 +27,7 @@ object SparkMySql {
         inputMysql.foreach(println)
         val mapList = inputMysql.map(r => JSONObject(
             Map("id" -> r._1, "phone" -> r._2, "name" -> r._3, "gender" -> r._4, "avatar" -> r._5)))
-        val path = "/Users/liliangshan/Desktop/duola/hadoop-world/active_users.json"
+        val path = "/Users/liliangshan/Desktop/duola/hadoop-world/active_users"
         mapList.saveAsTextFile(path)
         sc.stop()
     }
